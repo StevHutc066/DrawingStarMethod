@@ -42,9 +42,9 @@ namespace DrawingStarMethod
                 formGraphics.Clear(Color.DarkKhaki);
                 DrawStar(formGraphics, drawPen, xValue, yValue, size);
             }
-            catch
-            { }
-       }
+            catch { }
+
+        }
 
         /// <summary>
         /// Draws an unfilled star on the screen
@@ -59,18 +59,33 @@ namespace DrawingStarMethod
             // to draw each side so that it will end up being the number of pixels wide that the user desires.
             float scale = pixels / 207;
 
-            g.DrawLine(starPen, 80 * scale + x, 77 * scale + y, 103 * scale + x, 4 * scale + y);
-            g.DrawLine(starPen, 103 * scale + x, 4 * scale + y, 126 * scale + x, 78 * scale + y);
-            g.DrawLine(starPen, 126 * scale + x, 78 * scale + y, 207 * scale + x, 78 * scale + y);
-            g.DrawLine(starPen, 207 * scale + x, 78 * scale + y, 143 * scale + x, 125 * scale + y);
-            g.DrawLine(starPen, 143 * scale + x, 125 * scale + y, 167 * scale + x, 197 * scale + y);
-            g.DrawLine(starPen, 167 * scale + x, 197 * scale + y, 103 * scale + x, 152 * scale + y);
-            g.DrawLine(starPen, 103 * scale + x, 152 * scale + y, 40 * scale + x, 196 * scale + y);
-            g.DrawLine(starPen, 40 * scale + x, 196 * scale + y, 63 * scale + x, 123 * scale + y);
-            g.DrawLine(starPen, 63 * scale + x, 123 * scale + y, 0 * scale + x, 77 * scale + y);
-            g.DrawLine(starPen, 0 * scale + x, 77 * scale + y, 80 * scale + x, 77 * scale + y);
+            //g.DrawLine(starPen, 80 * scale + x, 77 * scale + y, 103 * scale + x, 4 * scale + y);
+            //g.DrawLine(starPen, 103 * scale + x, 4 * scale + y, 126 * scale + x, 78 * scale + y);
+            //g.DrawLine(starPen, 126 * scale + x, 78 * scale + y, 207 * scale + x, 78 * scale + y);
+            //g.DrawLine(starPen, 207 * scale + x, 78 * scale + y, 143 * scale + x, 125 * scale + y);
+            //g.DrawLine(starPen, 143 * scale + x, 125 * scale + y, 167 * scale + x, 197 * scale + y);
+            //g.DrawLine(starPen, 167 * scale + x, 197 * scale + y, 103 * scale + x, 152 * scale + y);
+            //g.DrawLine(starPen, 103 * scale + x, 152 * scale + y, 40 * scale + x, 196 * scale + y);
+            //g.DrawLine(starPen, 40 * scale + x, 196 * scale + y, 63 * scale + x, 123 * scale + y);
+            //g.DrawLine(starPen, 63 * scale + x, 123 * scale + y, 0 * scale + x, 77 * scale + y);
+            //g.DrawLine(starPen, 0 * scale + x, 77 * scale + y, 80 * scale + x, 77 * scale + y);
 
             //TODO: put the above points into a PointF array and use DrawPolygon to draw your star
+            PointF[] points = new PointF[10];
+            points[0] = new PointF(80 * scale + x, 77 * scale + y);
+            points[1] = new PointF(103 * scale + x, 4 * scale + y);
+            points[2] = new PointF(126 * scale + x, 78 * scale + y);
+            points[3] = new PointF(207 * scale + x, 78 * scale + y);
+            points[4] = new PointF(143 * scale + x, 125 * scale + y);
+            points[5] = new PointF(167 * scale + x, 197 * scale + y);
+            points[6] = new PointF(103 * scale + x, 152 * scale + y);
+            points[7] = new PointF(40 * scale + x, 196 * scale + y);
+            points[8] = new PointF(63 * scale + x, 123 * scale + y);
+            points[9] = new PointF(0 * scale + x, 77 * scale + y);
+
+            g.DrawPolygon(starPen, points);
+           // g.DrawLine(starPen, points[0],points[1]);
+
         }
 
         /// Gathers information from the input boxes and then sends values
@@ -81,7 +96,7 @@ namespace DrawingStarMethod
             try
             {
                 Graphics formGraphics = this.CreateGraphics();
-                Pen drawPen = new Pen(Color.Red);
+                Pen drawPen = new Pen(Color.Purple);
                 SolidBrush drawBrush = new SolidBrush(Color.Black);
 
                 float xValue, yValue, size;
@@ -107,6 +122,21 @@ namespace DrawingStarMethod
         public void FillStar(Graphics g, SolidBrush drawBrush, float x, float y, float pixels)
         {
             //TODO: create FillStar code here similar to DrawStar code but using FillPolygon instead
+            float scale = pixels / 207;
+
+            PointF[] points = new PointF[10];
+
+            points[0] = new PointF(80 * scale + x, 77 * scale + y);
+            points[1] = new PointF(103 * scale + x, 4 * scale + y);
+            points[2] = new PointF(126 * scale + x, 78 * scale + y);
+            points[3] = new PointF(207 * scale + x, 78 * scale + y);
+            points[4] = new PointF(143 * scale + x, 125 * scale + y);
+            points[5] = new PointF(167 * scale + x, 197 * scale + y);
+            points[6] = new PointF(103 * scale + x, 152 * scale + y);
+            points[7] = new PointF(40 * scale + x, 196 * scale + y);
+            points[8] = new PointF(63 * scale + x, 123 * scale + y);
+            points[9] = new PointF(0 * scale + x, 77 * scale + y);
+            g.FillPolygon(drawBrush, points);
         }
     }
 }
